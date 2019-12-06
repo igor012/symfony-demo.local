@@ -1,0 +1,28 @@
+- name: Get Symfony last version
+  uri:
+    url: https://get.symfony.com/cli/LATEST
+    return_content: true
+  register: symfony_version
+
+- name: Download Symfony binary
+  get_url:
+    url: https://github.com/symfony/cli/releases/download/v{{ symfony_version.content }}/symfony_linux_amd64.gz
+    dest: /var/tmp
+  become: false
+
+- name: Extract binary to /usr/local/bin
+  shell: gunzip -c /var/tmp/symfony_linux_amd64.gz > "{{ symfony_bin_location }}"/symfony && chmod +x "{{ symfony_bin_location }}"/symfony
+
+- name: Get binary checksum
+  stat:
+    path: "{{ symfony_bin_location }}/symfony"
+    checksum_algorithm: sha256
+  register: status
+
+- name: Compare binary checksum
+  fail:
+    msg: "Checksum failed"
+  when: status.stat.checksum != symfony_bin_sha256
+
+# - name: Install demo
+#   shell: symfony new --demo my_project

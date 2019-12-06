@@ -1,0 +1,12 @@
+---
+- hosts: db
+  become: true
+  roles:
+    - common
+    - database
+- hosts: web
+  become: true
+  roles:
+    - common
+    - webserver
+    #- symfony

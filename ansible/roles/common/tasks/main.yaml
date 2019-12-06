@@ -1,0 +1,17 @@
+- name: Update system
+  apt:
+    update_cache: yes
+    name: "*"
+    state: latest
+
+- name: Install common packages
+  apt:
+    state: latest
+    pkg:
+      - vim-nox
+      - lsof
+      - aptitude
+      - mlocate
+      - git
+      - gzip
+      - curl

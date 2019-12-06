@@ -1,0 +1,31 @@
+- name: Install nginx web server & php-fpm
+  apt:
+    state: latest
+    pkg:
+      - nginx
+      - php-fpm
+      - composer
+      - php7.3-pgsql
+      - php-xml
+      - php-intl
+
+- name: Disable default site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Configure Nginx
+  template:
+    src: templates/symfony.conf.j2
+    dest: /etc/nginx/sites-enabled/symfony.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart nginx
+
+- name: Init DB
+  shell: sudo -u www-data /var/www/project/bin/console doctrine:schema:create && sudo -u www-data php /var/www/project/bin/console doctrine:fixtures:load -n
+  run_once: true
+  notify:
+  - restart nginx

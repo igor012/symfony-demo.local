@@ -1,0 +1,38 @@
+- name: Install packages
+  apt:
+    pkg:
+    - postgresql
+    - python-psycopg2
+    state: present
+
+- name: Configure PostgreSQL server
+  template:
+    src: templates/postgresql.conf.j2
+    dest: /etc/postgresql/11/main/postgresql.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+  - restart postgresql
+
+- name: Configure PostgreSQL server
+  template:
+    src: templates/pg_hba.conf.j2
+    dest: /etc/postgresql/11/main/pg_hba.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+  - restart postgresql
+
+- name: Create db_user
+  become_user: postgres
+  postgresql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_pw }}"
+    role_attr_flags: "CREATEDB,NOSUPERUSER"
+
+- name: Create database
+  become_user: postgres
+  postgresql_db:
+    name: "{{ db_name }}"
