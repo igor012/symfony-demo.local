@@ -9,7 +9,7 @@ sudo apt install composer
 
 Clone Symfony Demo Application
 ```
-git@github.com:igor012/symfony-demo.local.git
+git clone git@github.com:igor012/symfony-demo.local.git
 ```
 
 Clone Symfony Demo Application into the project
