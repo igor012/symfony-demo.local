@@ -6,6 +6,7 @@
       - php-fpm
       - composer
       - php7.3-pgsql
+      - php7.3-sqlite3
       - php-xml
       - php-intl
 
@@ -23,9 +24,3 @@
     mode: '0644'
   notify:
     - restart nginx
-
-- name: Init DB
-  shell: sudo -u www-data /var/www/project/bin/console doctrine:schema:create && sudo -u www-data php /var/www/project/bin/console doctrine:fixtures:load -n
-  run_once: true
-  notify:
-  - restart nginx

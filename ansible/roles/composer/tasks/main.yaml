@@ -1,0 +1,23 @@
+- name: Install Composer
+  apt:
+    name: composer
+    state: present
+
+- name: Create env file
+  copy:
+    dest: "{{ project_path }}/.env.{{ env }}"
+    content: |
+      ENV={{ env }}
+      APP_SECRET="{{ app_secret }}"
+      DATABASE_URL="{{ database_url }}"
+
+- name: Check if database was previously initialized
+  stat:
+    path: /var/www/.db
+  register: db_check
+
+- name: Init DB
+  shell: sudo -u www-data /var/www/project/bin/console doctrine:schema:create && sudo -u www-data php /var/www/project/bin/console doctrine:fixtures:load -n && touch /var/www/.db
+  notify:
+  - restart nginx
+  when: db_check.stat.exists == false

@@ -1,8 +1,6 @@
 ---
 fqdn: "symfony-demo.local"
-symfony_bin_location: "/usr/local/bin"
-symfony_bin_sha256: "2882e14a4c8ce54064b3ba4c77df5d616d3c3b38c3f6ed354719c00003e0d0d1"
-
 env: dev
 app_secret: 67d829bf61dc5f87a73fd814e2c9f629
 database_url: postgresql://myuser:AhM7zai7aec0uLiequai@10.0.15.20:5432/demo_db?serverVersion=1
+project_path: /var/www/project
