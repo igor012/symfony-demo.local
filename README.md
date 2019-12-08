@@ -16,6 +16,8 @@ Clone Symfony Demo Application into the project
 ```
 cd symfony-demo.local/code/
 git clone git@github.com:symfony/demo.git project
+cd project
+composer install
 ```
 
 
