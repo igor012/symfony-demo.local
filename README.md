@@ -35,5 +35,12 @@ When deployed you can access the URL http://symfony-demo.local/ or http://localh
 # Tests
 Run unit tests and quality tests
 ```
-cd tests
+cd tests/
 make help
+ tests : Run tests whith /usr/bin/phpunit
+
+ cs: Execute code quality with
+
+ all: Run all at once
+
+```
