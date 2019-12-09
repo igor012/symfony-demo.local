@@ -1,6 +1,8 @@
 symfony-demo.local
 ===
 
+# Vagrant stack
+
 ## Requirements
 Install composer locally
 ```
@@ -29,3 +31,9 @@ sudo echo "10.0.15.10 symfony-demo.local" >> /etc/hosts
 vagrant up
 ```
 When deployed you can access the URL http://symfony-demo.local/ or http://localhost:8080/
+
+# Tests
+Run unit tests and quality tests
+```
+cd tests
+make help
