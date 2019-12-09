@@ -6,7 +6,7 @@ PHPCS = /usr/bin/phpcs -p
 
 help:
 		@echo "\n tests : Run tests whith $(PU)\n"
-		@echo " cs: Execute code quality with $(PCS)\n"
+		@echo " cs: Execute code quality with $(PHPCS)\n"
 		@echo " all: Run all at once\n"
 
 all: tests phpcs
