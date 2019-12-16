@@ -44,7 +44,7 @@ cd tests/
 make help
  tests : Run tests whith /usr/bin/phpunit
 
- cs: Execute code quality with
+ cs: Execute code quality with PhpCS
 
  all: Run all at once
 
