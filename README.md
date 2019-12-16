@@ -16,13 +16,13 @@ sudo apt install composer
 
 Clone Symfony Demo Application
 ```console
-git clone git@github.com:igor012/symfony-demo.local.git
+git clone git@github.com:igor012/symfony-demo.local.git #OR with https https://github.com/igor012/symfony-demo.local.git
 ```
 
 Clone Symfony Demo Application into *symfony-demo.local/code*
 ```console
 cd symfony-demo.local/code/
-git clone git@github.com:symfony/demo.git project
+git clone git@github.com:symfony/demo.git project #OR with https https://github.com/symfony/demo.git
 cd project
 composer install
 ```
